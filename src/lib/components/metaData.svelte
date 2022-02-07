@@ -25,7 +25,7 @@
   export let content: Props;
   // let canonicalURL:string;
 
-  let canonicalURL = "https://" + $page.host + $page.url.pathname;
+  let canonicalURL = "https://" + $page.host + $page.path;
   const canonicalImageSrc = canonicalURL + content.imageSrc;
 </script>
 
