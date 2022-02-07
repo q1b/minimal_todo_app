@@ -18,7 +18,7 @@
   import Todoitem from "$lib/components/Todoitem.svelte";
   import Input from "$lib/components/Input.svelte";
   import { genTask } from "$lib/helper/index"
-import { onMount } from "svelte";
+  import { onMount } from "svelte";
 
   let inputRef: HTMLInputElement;
   let tasks: Todo[] = [];
@@ -33,7 +33,9 @@ import { onMount } from "svelte";
     let storedTasks = JSON.parse(localStorage.getItem('FUL_TASKS')) ?? [];
     tasks = storedTasks;
     updateTasks = ( newTasks: Todo[] ) => {
-      tasks = [...newTasks];
+      const TasksThatAreCompleted = newTasks.filter((e)=>e.done);
+      const TasksThatAreNotCompleted = newTasks.filter((e)=> !e.done);
+      tasks = [...TasksThatAreNotCompleted,...TasksThatAreCompleted];
       localStorage.setItem('FUL_TASKS',JSON.stringify(tasks));
     }
     addToTasks = ( task: Todo ) => {
@@ -41,7 +43,6 @@ import { onMount } from "svelte";
       localStorage.setItem('FUL_TASKS',JSON.stringify(tasks));
     }
   })
-
   function addTask() {
     let task:Todo = genTask(inputRef.value);
     inputRef.value = '';
@@ -53,8 +54,9 @@ import { onMount } from "svelte";
     for (let index = 0; index < tasks.length; index++) {
       const element = tasks[index];
       if( element._id === _id ) continue
-      temp = [element,...temp];
-    }        
+      temp = [...temp,element];
+    }
+    // tasks = temp;
     updateTasks(temp);
   }
 
@@ -65,7 +67,7 @@ import { onMount } from "svelte";
       if( element._id === _id ) {
         element.done = !element.done
       }
-      temp = [element,...temp];
+      temp = [...temp,element];
     }
     updateTasks(temp);
   }
@@ -88,3 +90,8 @@ import { onMount } from "svelte";
     {/each}
   </div>
 </article>
+<style lang="postcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</style>

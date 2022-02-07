@@ -1,6 +1,4 @@
 <script lang="ts">
-  import 'uno.css'
-  import '@unocss/reset/tailwind.css'
   import MetaData from "$lib/components/metaData.svelte"
 </script>
 <html lang="en">

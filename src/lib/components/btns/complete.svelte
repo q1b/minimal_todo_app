@@ -1,11 +1,12 @@
 <script lang="ts">
+  import { activeSvg, inactiveSvg } from "../../helper/classes"
   import { createEventDispatcher } from "svelte";
   let dispatch = createEventDispatcher();
 </script>
 <button on:click={()=>{ dispatch('complete') }} class="relative group">
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="inactive-svg text-green-400"
+    class="{inactiveSvg} text-green-400"
     viewBox="0 0 20 20"
     fill="currentColor"
   >
@@ -17,7 +18,7 @@
   </svg>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="frontsvg"
+    class="{activeSvg}"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
