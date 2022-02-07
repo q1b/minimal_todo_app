@@ -1,4 +1,4 @@
-import vercel from "@sveltejs/adapter-vercel";
+import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -6,7 +6,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: preprocess(),
 	kit: {
-		adapter: vercel(),
+		adapter: adapter(),
 		// hydrate the <div id="svelte"> element in src/app.html
 		vite: {
 			plugins: [

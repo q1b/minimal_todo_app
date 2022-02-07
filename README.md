@@ -1,2 +1,1 @@
-# Todo appilcation
-## made with svelte sveltkit LocalStorage
+# Todo list app with minimal feature, but awesome animations
